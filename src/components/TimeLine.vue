@@ -299,14 +299,14 @@ header p{
 
   .direction-l {
     position: relative;
-    width: 310px;
+    width: 350px;
     float: left;
     text-align: right;
   }
 
   .direction-r {
     position: relative;
-    width: 310px;
+    width: 350px;
     float: right;
     text-align: left;
   }
@@ -365,21 +365,21 @@ header p{
 
 @media(min-width: 992px){
   .timeline {
-    width: 800px;
+    width: 900px;
     margin: 0 auto;
     margin-top: 20px;
   }
 
   .direction-l {
     position: relative;
-    width: 380px;
+    width: 420px;
     float: left;
     text-align: right;
   }
 
   .direction-r {
     position: relative;
-    width: 380px;
+    width: 420px;
     float: right;
     text-align: left;
   }
@@ -390,5 +390,6 @@ header p{
   font-size: 40px;
   font-family: 华文彩云;
   margin: auto;
+  line-height: 100px;
 }
 </style>
