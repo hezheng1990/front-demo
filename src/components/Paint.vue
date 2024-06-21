@@ -2,13 +2,13 @@
 
 
 <div>
-  <el-header class="fh">可爱的小满</el-header>
-  <el-carousel :interval="3000" height="400px" type="card">
+  <el-header class="fh" style="margin-bottom: 40px">可爱的小满</el-header>
+
+
+  <el-carousel :interval="10000"  type="card" height="800px">
     <el-carousel-item  v-for="(item,index) in images" :key="item">
-
-      <video class="fheight"  width="100%" height="200px" v-if="getMediaType(item) == 2" :src="item" controls="controls"></video>
-
-      <img class = "fheight"  width="100%" height="200px"  v-else :src="item"/>
+      <video class="fheight"   v-if="getMediaType(item) == 2" :src="item" controls="controls"></video>
+      <img class = "fheight"   v-else :src="item"/>
     </el-carousel-item>
   </el-carousel>
 <el-container>
@@ -26,8 +26,6 @@
             </div>
 
 
-
-<!--              <el-button class="bt" style="float: right;" type="text" @click="query">查询</el-button>-->
           </div>
           <div>
             <el-scrollbar class="message-list">
@@ -88,37 +86,6 @@
 
       <el-main>
 
-<!--          <div class="ffoot">-->
-<!--            <img class="fimg" src="../assets/20240509-201459.jpg" />-->
-<!--          </div>-->
-<!--          <div>-->
-<!--            <img class = "fimg" src="http://123.249.95.0:8081/home/file/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20240605201209.jpg"/>-->
-<!--          </div>-->
-<!--          <div class="ffoot">-->
-<!--            <video src="../assets/飞书20240507-181845.mp4" controls="controls" width="350px" height="600px"></video>-->
-<!--            <video src="../assets/飞书20240509-201446.mp4" controls="controls" width="350px" height="600px"></video>-->
-<!--          </div>-->
-
-
-<!--          <div class="block">-->
-
-<!--            <el-carousel class="fheight">-->
-<!--              <el-carousel-item  v-for="(item,index) in images" :key="item">-->
-<!--               -->
-<!--              </el-carousel-item>-->
-<!--            </el-carousel>-->
-<!--          </div>-->
-
-
-<!--          <div class="ffoot" v-for="(item,index) in images">-->
-<!--            <div>-->
-<!--              <video class="fwidth" v-if="getMediaType(item) == 2" :src="item" controls="controls"></video>-->
-
-<!--              <img class = "fwidth" v-else :src="item"/>-->
-<!--            </div>-->
-
-
-<!--          </div>-->
         <TimeLine></TimeLine>
 
       </el-main>
@@ -277,7 +244,11 @@ export default {
 }
 
 .fheight{
-  height: 900px;
+  height: 700px;
+}
+
+::v-deep .el-carousel_container {
+  height: 900px !important
 }
 
 
@@ -308,6 +279,8 @@ export default {
   padding: 10px;
   text-align: left;
 }
+
+
 
 .aside {
   border:1px solid red;
