@@ -1,84 +1,92 @@
 <template>
 
 
+<div>
+  <el-header class="fh">可爱的小满</el-header>
+  <el-carousel :interval="3000" height="400px" type="card">
+    <el-carousel-item  v-for="(item,index) in images" :key="item">
+
+      <video class="fheight"  width="100%" height="200px" v-if="getMediaType(item) == 2" :src="item" controls="controls"></video>
+
+      <img class = "fheight"  width="100%" height="200px"  v-else :src="item"/>
+    </el-carousel-item>
+  </el-carousel>
+<el-container>
 
   <el-container>
-    <el-header class="fh">可爱的小满</el-header>
-    <el-container>
-      <el-aside width="20%">
-
-        <div class="message-board">
-          <el-card>
-            <div slot="header" class="clearfix">
-              <p class="fh" style="line-height: 100px">留言板</p>
-              <div class="clearfix">
-                <el-button class="bt" style="float: right;" type="text" @click="showDialog = true">添加留言</el-button>
-                <el-button class="bt" style="float: left;" type="text" @click="showFileDialog = true">上传文件</el-button>
-                <el-button class="bt" style="float: left;" type="text" @click="showLoginDialog = true">注册/登陆</el-button>
-              </div>
+    <el-aside width="400px">
+      <div class="message-board">
+        <el-card class="box-card">
+          <div slot="header" class="clearfix">
+            <p class="fh" style="line-height: 100px">留言板</p>
+            <div class="clearfix">
+              <el-button class="bt" style="float: right;" type="text" @click="showDialog = true">添加留言</el-button>
+              <el-button class="bt" style="float: left;" type="text" @click="showFileDialog = true">上传文件</el-button>
+              <el-button class="bt" style="float: left;" type="text" @click="showLoginDialog = true">注册/登陆</el-button>
+            </div>
 
 
 
 <!--              <el-button class="bt" style="float: right;" type="text" @click="query">查询</el-button>-->
-            </div>
-            <div class="message-list">
-              <el-timeline>
-                <el-timeline-item v-for="(message, index) in messages" :key="index" :timestamp="message.timestamp">
-                  <el-card>
-                    <div>{{ message.content }}</div>
-                  </el-card>
-                </el-timeline-item>
-              </el-timeline>
-            </div>
-          </el-card>
+          </div>
+          <div>
+            <el-scrollbar class="message-list">
+              <ul>
+                <li v-for="(message, index) in messages" :key="index" :timestamp="message.timestamp">
+                  <div>{{ message.content }}</div>
+                </li>
+              </ul>
+            </el-scrollbar>
+          </div>
+        </el-card>
 
-          <el-dialog title="添加留言" :visible.sync="showDialog" width="30%">
-            <el-form ref="messageForm" :model="newMessage" label-width="80px">
-              <el-form-item label="留言内容" prop="content">
-                <el-input type="textarea"   placeholder="placeholder"  v-model="newMessage.content" autocomplete="off" ></el-input>
-              </el-form-item>
-            </el-form>
-            <div slot="footer" class="dialog-footer">
-              <el-button @click="showDialog = false">取消</el-button>
-              <el-button type="primary" @click="addMessage">添加</el-button>
-            </div>
-          </el-dialog>
+        <el-dialog title="添加留言" :visible.sync="showDialog" width="30%">
+          <el-form ref="messageForm" :model="newMessage" label-width="80px">
+            <el-form-item label="留言内容" prop="content">
+              <el-input type="textarea"   placeholder="placeholder"  v-model="newMessage.content" autocomplete="off" ></el-input>
+            </el-form-item>
+          </el-form>
+          <div slot="footer" class="dialog-footer">
+            <el-button @click="showDialog = false">取消</el-button>
+            <el-button type="primary" @click="addMessage">添加</el-button>
+          </div>
+        </el-dialog>
 
-          <el-dialog title="上传图片" :visible.sync="showFileDialog" width="30%">
-            <el-form ref="messageForm" :model="newMessage" label-width="80px">
-              <el-form-item label="小满的生日" prop="content">
-                <el-input type="text"    placeholder=""  v-model="password" autocomplete="off" ></el-input>
-              </el-form-item>
-              <el-form-item label="选择文件" prop="content">
-                <el-input type="file" @change="handleFile"   placeholder=""  autocomplete="off" ></el-input>
-              </el-form-item>
-            </el-form>
-            <div slot="footer" class="dialog-footer">
-              <el-button @click="showFileDialog = false">取消</el-button>
-              <el-button type="primary" @click="uploadFiles">添加</el-button>
-            </div>
-          </el-dialog>
+        <el-dialog title="上传图片" :visible.sync="showFileDialog" width="30%">
+          <el-form ref="messageForm" :model="newMessage" label-width="80px">
+            <el-form-item label="小满的生日" prop="content">
+              <el-input type="text"    placeholder=""  v-model="password" autocomplete="off" ></el-input>
+            </el-form-item>
+            <el-form-item label="选择文件" prop="content">
+              <el-input type="file" @change="handleFile"   placeholder=""  autocomplete="off" ></el-input>
+            </el-form-item>
+          </el-form>
+          <div slot="footer" class="dialog-footer">
+            <el-button @click="showFileDialog = false">取消</el-button>
+            <el-button type="primary" @click="uploadFiles">添加</el-button>
+          </div>
+        </el-dialog>
 
 
-          <el-dialog title="注册或登陆" :visible.sync="showLoginDialog" width="30%">
-            <el-form ref="messageForm" :model="newMessage" label-width="80px">
-              <el-form-item label="用户名" prop="content">
-                <el-input type="text"    placeholder=""  v-model="userName" autocomplete="off" ></el-input>
-              </el-form-item>
-              <el-form-item label="密码" prop="content">
-                <el-input type="text"    placeholder=""  v-model="userPassword" autocomplete="off" ></el-input>
-              </el-form-item>
-            </el-form>
-            <div slot="footer" class="dialog-footer">
-              <el-button @click="showLoginDialog = false">取消</el-button>
-              <el-button type="primary" @click="login">添加</el-button>
-            </div>
-          </el-dialog>
-        </div>
-      </el-aside>
-      <el-container>
+        <el-dialog title="注册或登陆" :visible.sync="showLoginDialog" width="30%">
+          <el-form ref="messageForm" :model="newMessage" label-width="80px">
+            <el-form-item label="用户名" prop="content">
+              <el-input type="text"    placeholder=""  v-model="userName" autocomplete="off" ></el-input>
+            </el-form-item>
+            <el-form-item label="密码" prop="content">
+              <el-input type="text"    placeholder=""  v-model="userPassword" autocomplete="off" ></el-input>
+            </el-form-item>
+          </el-form>
+          <div slot="footer" class="dialog-footer">
+            <el-button @click="showLoginDialog = false">取消</el-button>
+            <el-button type="primary" @click="login">添加</el-button>
+          </div>
+        </el-dialog>
+      </div>
+    </el-aside>
+    <el-container>
 
-        <el-main>
+      <el-main>
 
 <!--          <div class="ffoot">-->
 <!--            <img class="fimg" src="../assets/20240509-201459.jpg" />-->
@@ -91,14 +99,6 @@
 <!--            <video src="../assets/飞书20240509-201446.mp4" controls="controls" width="350px" height="600px"></video>-->
 <!--          </div>-->
 
-          <el-carousel :interval="3000" height="800px" type="card">
-            <el-carousel-item  v-for="(item,index) in images" :key="item">
-
-              <video class="fheight"  width="100%" height="200px" v-if="getMediaType(item) == 2" :src="item" controls="controls"></video>
-
-              <img class = "fheight"  width="100%" height="200px"  v-else :src="item"/>
-            </el-carousel-item>
-          </el-carousel>
 
 <!--          <div class="block">-->
 
@@ -119,16 +119,17 @@
 
 
 <!--          </div>-->
-          <TimeLine></TimeLine>
+        <TimeLine></TimeLine>
 
-        </el-main>
+      </el-main>
 
-        <el-footer>
+      <el-footer>
 
-        </el-footer>
-      </el-container>
+      </el-footer>
     </el-container>
   </el-container>
+</el-container>
+</div>
 
 
 
@@ -286,19 +287,26 @@ export default {
 }
 .fh {
   font-size: 40px;
-  font-family: 华文彩云;
+  /* font-family: 华文彩云; */
   margin: auto;
 }
 
 .message-board {
-  margin: 20px;
+  margin: 40px 20px 20px;
 }
-
+.box-card {
+  border-radius: 20px;
+}
 .message-list {
+  height: 800px;
   line-height: 20px;
   margin-top: 20px;
   font-family: 幼圆;
-  //background-color: #D3DCE6;
+}
+.message-list li {
+  border-bottom: 1px solid #D3DCE6;
+  padding: 10px;
+  text-align: left;
 }
 
 .aside {
@@ -316,14 +324,14 @@ export default {
 }
 
 .el-aside {
-  //background-color: #D3DCE6;
+  /* //background-color: #D3DCE6; */
   color: #333;
   text-align: center;
   line-height: 200px;
 }
 
 .el-main {
-  //background-color: #E9EEF3;
+  /* //background-color: #E9EEF3; */
   color: #333;
   text-align: center;
   line-height: 160px;

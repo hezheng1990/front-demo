@@ -171,9 +171,6 @@ header p{
   z-index: 5;
 }
 
-.timeline li {
-  padding: 2em 0;
-}
 
 .timeline .hexa{
   width: 16px;
@@ -234,46 +231,23 @@ header p{
   top: -15px;
   height: 0;
   width: 0;
-  margin-left: -8px;
+  margin-left: -7px;
   border: solid transparent;
   border-bottom-color: rgb(255,255,255);
   border-width: 8px;
   pointer-events: none;
 }
 
-.direction-l .flag {
-  -webkit-box-shadow: -1px 1px 1px rgba(0,0,0,0.15), 0 0 1px rgba(0,0,0,0.15);
-  -moz-box-shadow: -1px 1px 1px rgba(0,0,0,0.15), 0 0 1px rgba(0,0,0,0.15);
-  box-shadow: -1px 1px 1px rgba(0,0,0,0.15), 0 0 1px rgba(0,0,0,0.15);
-}
-
-.direction-r .flag {
-  -webkit-box-shadow: 1px 1px 1px rgba(0,0,0,0.15), 0 0 1px rgba(0,0,0,0.15);
-  -moz-box-shadow: 1px 1px 1px rgba(0,0,0,0.15), 0 0 1px rgba(0,0,0,0.15);
-  box-shadow: 1px 1px 1px rgba(0,0,0,0.15), 0 0 1px rgba(0,0,0,0.15);
-}
 
 .time-wrapper {
-  display: block;
-  position: relative;
   margin: 4px 0 0 0;
   z-index: 14;
   line-height: 1em;
-  vertical-align: middle;
   color: #fff;
-}
-
-.direction-l .time-wrapper {
-  float: none;
-}
-
-.direction-r .time-wrapper {
-  float: none;
 }
 
 .time {
   background: #00c4f3;
-  display: inline-block;
   padding: 8px;
 }
 
@@ -282,9 +256,8 @@ header p{
   margin: 1em 0 0 0;
   padding: 1em;
   background: rgb(254,254,254);
-  -webkit-box-shadow: 0 0 1px rgba(0,0,0,0.20);
-  -moz-box-shadow: 0 0 1px rgba(0,0,0,0.20);
-  box-shadow: 0 0 1px rgba(0,0,0,0.20);
+  box-shadow: 0 0 14PX 1px rgba(0,0,0,0.20);
+  border-radius: 16PX;
   z-index: 15;
   line-height: 50px;
   text-indent: 40px;
@@ -326,14 +299,14 @@ header p{
 
   .direction-l {
     position: relative;
-    width: 310px;
+    width: 350px;
     float: left;
     text-align: right;
   }
 
   .direction-r {
     position: relative;
-    width: 310px;
+    width: 350px;
     float: right;
     text-align: left;
   }
@@ -344,11 +317,13 @@ header p{
 
   .flag {
     font-size: 18px;
+    box-shadow: 0 0 14PX 1px rgba(0,0,0,0.20);
+    border-radius: 16PX;
   }
 
   .direction-l .flag:after {
     left: auto;
-    right: -16px;
+    right: -14px;
     top: 50%;
     margin-top: -8px;
     border: solid transparent;
@@ -390,21 +365,21 @@ header p{
 
 @media(min-width: 992px){
   .timeline {
-    width: 800px;
+    width: 900px;
     margin: 0 auto;
     margin-top: 20px;
   }
 
   .direction-l {
     position: relative;
-    width: 380px;
+    width: 420px;
     float: left;
     text-align: right;
   }
 
   .direction-r {
     position: relative;
-    width: 380px;
+    width: 420px;
     float: right;
     text-align: left;
   }
@@ -415,5 +390,6 @@ header p{
   font-size: 40px;
   font-family: 华文彩云;
   margin: auto;
+  line-height: 100px;
 }
 </style>
